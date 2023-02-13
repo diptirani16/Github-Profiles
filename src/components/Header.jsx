@@ -1,9 +1,22 @@
 import React from "react";
+import { Box, AppBar, Toolbar, Typography, Switch } from '@mui/material';
 
-export default function Header () {
-    return(
+const label = { inputProps: { 'aria-label': 'Switch demo' } };
+
+export default function Header() {
+    return (
         <>
-            <h1>Header</h1>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="static">
+                    <Toolbar>
+                        <Typography variant="h6" component="div">
+                            Github Profiles
+                        </Typography>
+                        <Box sx={{ flexGrow: 1 }}></Box>
+                        <Switch {...label} color="default"/>
+                    </Toolbar>
+                </AppBar>
+            </Box>
         </>
     )
 }
