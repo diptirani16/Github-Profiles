@@ -3,7 +3,12 @@ import { Box, AppBar, Toolbar, Typography, Switch } from '@mui/material';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
-export default function Header() {
+export default function Header({toggleDark, settoggleDark}) {
+
+    const handleModeChange = () => {
+        settoggleDark(!toggleDark)
+    };
+
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
@@ -13,7 +18,9 @@ export default function Header() {
                             Github Profiles
                         </Typography>
                         <Box sx={{ flexGrow: 1 }}></Box>
-                        <Switch {...label} color="default"/>
+                        <Switch checked={toggleDark}
+                            onChange={handleModeChange}
+                            name="toggleDark" color="default" />
                     </Toolbar>
                 </AppBar>
             </Box>

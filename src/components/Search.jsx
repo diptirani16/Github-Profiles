@@ -5,11 +5,11 @@ export default function Search() {
 
     const [username, setUsername] = useState()
     const [userdata, setUserdata] = useState([]);
-    const [repos, setRepos] = useState([]);
+    const [repos, setRepos] = useState();
     const [showdetails, setShowdetails] = useState(false);
 
     const handleSearch = (uname) => {
-        
+
         console.log(uname)
         fetch(`https://api.github.com/users/${uname}`)
             .then(res => res.json())
@@ -17,15 +17,16 @@ export default function Search() {
                 // console.log(data)
                 setUserdata(data)
                 console.log(userdata)
+                fetch(`${data.repos_url}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        setRepos(data)
+                        console.log(repos[0].name)
+                    })
             })
 
-        fetch(`https://api.github.com/users/${uname}/repos`)
-            .then(res => res.json())
-            .then(data => {
-                setRepos(data)
-                console.log(repos[0].name)
-            })
-            setShowdetails(true)
+
+        setShowdetails(true)
     }
 
     return (
